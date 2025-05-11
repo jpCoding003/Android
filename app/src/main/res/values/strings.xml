@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Android</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="signup">Signup</string>
+    <string name="text">Don\'t Have An Account?</string>
+    <string name="email">Email</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="alreadyAccount">Already Have an Account?</string>
+    <string name="welcome">Welcome!</string>
+</resources>
