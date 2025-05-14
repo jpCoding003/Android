@@ -17,6 +17,6 @@ class DashboardActivity : AppCompatActivity() {
         title = "Dashboard"
 
         // Example: Show a welcome message
-        binding.textWelcome.text = "Welcome, Jay!"
+       // binding.textWelcome.text = "Welcome, Jay!"
     }
 }
