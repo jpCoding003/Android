@@ -12,8 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-
-
         // Example usage of binding
 
     }

@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
 
+@Suppress("DEPRECATION")
 class SplashActivity:AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +21,7 @@ class SplashActivity:AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         Handler().postDelayed({
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
