@@ -31,7 +31,7 @@ class LoginActivity :AppCompatActivity() {
                 startActivity(intent)
             }else{
                 // code
-                Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Enter valid detail", Toast.LENGTH_SHORT).show()
             }
         }
 
