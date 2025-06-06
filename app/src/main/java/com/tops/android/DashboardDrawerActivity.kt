@@ -1,7 +1,12 @@
 package com.tops.android
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.window.SplashScreen
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -11,8 +16,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuProvider
 import com.tops.android.databinding.ActivityDashboardDrawerBinding
-
+private const val IS_LOGIN = "IS_Login"
 class DashboardDrawerActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -43,13 +49,40 @@ class DashboardDrawerActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        addMenuProvider(object: MenuProvider{
+            override fun onCreateMenu(
+                menu: Menu,
+                menuInflater: MenuInflater
+            ) {
+                menuInflater.inflate(R.menu.dashboard_drawer, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                if (menuItem.itemId == R.id.action_logout){
+
+                    val sharedPref = getSharedPreferences(
+                        getString(R.string.app_name), Context.MODE_PRIVATE)
+                    with(sharedPref.edit()){
+                        putBoolean(IS_LOGIN, false)
+                        apply()
+                    }
+                    val intent = Intent(applicationContext, SplashScreen::class.java)
+                    startActivity(intent)
+                    finish()
+                    return true
+                }
+                return false
+            }
+        })
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.dashboard_drawer, menu)
-        return true
-    }
+
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        menuInflater.inflate(R.menu.dashboard_drawer, menu)
+//        return true
+//    }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_dashboard_drawer)
