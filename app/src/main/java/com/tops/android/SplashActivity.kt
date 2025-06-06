@@ -1,5 +1,6 @@
 package com.tops.android
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import androidx.activity.enableEdgeToEdge
@@ -21,11 +22,19 @@ class SplashActivity:AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val sharedPref = getSharedPreferences(getString(R.string.app_name),Context.MODE_PRIVATE)
+        val isLogin= sharedPref.getBoolean(IS_Login,false)
 
         Handler().postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+
+            if (isLogin == true){
+                val intent = Intent(this , DashboardDrawerActivity::class.java)
+                startActivity(intent)
+            }else {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         },3000)
     }
 }

@@ -2,11 +2,13 @@ package com.tops.android
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.window.SplashScreen
+import androidx.annotation.RequiresApi
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -58,6 +60,7 @@ class DashboardDrawerActivity : AppCompatActivity() {
                 menuInflater.inflate(R.menu.dashboard_drawer, menu)
             }
 
+            @RequiresApi(Build.VERSION_CODES.S)
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 if (menuItem.itemId == R.id.action_logout){
 
