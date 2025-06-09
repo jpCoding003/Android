@@ -1,18 +1,12 @@
 package com.tops.android
 
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
-import android.nfc.Tag
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
-import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.tops.android.databinding.LoginActivityBinding
 
 private const val Tag = "LoginFragment"
@@ -35,7 +29,7 @@ class LoginActivity :AppCompatActivity() {
             val password = binding.tpassword.text.toString().trim()
 
             if (username=="Jay" && password=="Jay1234"){
-                val intent =Intent(this, DashboardDrawerActivity::class.java)
+                val intent =Intent(this, ViewPagerActivity::class.java)
                 startActivity(intent)
             }else{
                 // code
