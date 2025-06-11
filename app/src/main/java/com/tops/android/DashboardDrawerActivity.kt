@@ -19,6 +19,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import com.tops.android.databinding.ActivityDashboardDrawerBinding
 private const val IS_LOGIN = "IS_Login"
 class DashboardDrawerActivity : AppCompatActivity() {
@@ -34,11 +36,11 @@ class DashboardDrawerActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarDashboardDrawer.toolbar)
 
-        binding.appBarDashboardDrawer.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setAnchorView(R.id.fab).show()
-        }
+//        binding.appBarDashboardDrawer.fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null)
+//                .setAnchorView(R.id.fab).show()
+//        }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_dashboard_drawer)
@@ -46,43 +48,49 @@ class DashboardDrawerActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_home,
+                R.id.nav_gallery,
+                R.id.nav_slideshow
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        addMenuProvider(object: MenuProvider{
-            override fun onCreateMenu(
-                menu: Menu,
-                menuInflater: MenuInflater
-            ) {
-                menuInflater.inflate(R.menu.dashboard_drawer, menu)
-            }
-
-            @RequiresApi(Build.VERSION_CODES.S)
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                if (menuItem.itemId == R.id.action_logout){
-
-                    val sharedPref = getSharedPreferences(
-                        getString(R.string.app_name), Context.MODE_PRIVATE)
-                    with(sharedPref.edit()){
-                        putBoolean(IS_LOGIN, false)
-                        apply()
-                    }
-                    val intent = Intent(applicationContext, SplashScreen::class.java)
-                    startActivity(intent)
-                    finish()
-                    return true
-                }
-                return false
-            }
-        })
+//        addMenuProvider(object: MenuProvider{
+//            override fun onCreateMenu(
+//                menu: Menu,
+//                menuInflater: MenuInflater
+//            ) {
+//               // menuInflater.inflate(R.menu.dashboard_drawer, menu)
+//            }
+//
+//            @RequiresApi(Build.VERSION_CODES.S)
+//            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+//                if (menuItem.itemId == R.id.action_logout){
+//
+//                    val sharedPref = getSharedPreferences(
+//                        getString(R.string.app_name), Context.MODE_PRIVATE)
+//                    with(sharedPref.edit()){
+//                        putBoolean(IS_LOGIN, false)
+//                        apply()
+//                    }
+//                    val intent = Intent(applicationContext, SplashScreen::class.java)
+//                    startActivity(intent)
+//                    finish()
+//                    return true
+//                }
+//
+//                if (menuItem.itemId == R.id.action_add){
+//
+//                }
+//                return false
+//            }
+//        })
     }
 
-
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        // Inflate the menu; this adds items to the action bar if it is present.
+//        // Inflate the menu; this adds items to the
+//        action bar if it is present.
 //        menuInflater.inflate(R.menu.dashboard_drawer, menu)
 //        return true
 //    }
